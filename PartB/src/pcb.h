@@ -9,17 +9,18 @@
 #include <string>
 using namespace std;
 
+// PCB struct representing a process
 struct PCB
 {
-    string pid;
-    int arrival;   
-    int burst;
-    int remaining;
-    int priority;
+    string pid;          // Process ID
+    int arrival;         // Arrival time
+    int burst;           // Total CPU burst time required
+    int remaining;       // Remaining CPU time
+    int priority;        // Priority level
 
-    string state;
+    string state;        // State: (i.e. NEW, READY, RUNNING, TERMINATED)
 
-    int start_time;
-    int completion_time;
+    int start_time;      // First time process starts 
+    int completion_time; // Time when process finishes 
 };
 #endif
