@@ -91,3 +91,13 @@ void runFCFS(PCB processes[], int n)
 
     while(finished < n)
     {
+        
+        //Admit arriving processes
+        for(int i=0;i<n;i++)
+        {
+            if(processes[i].arrival == time)
+            {
+                processes[i].state = "READY";
+                readyQueue[rqSize++] = &processes[i];
+            }
+        }
