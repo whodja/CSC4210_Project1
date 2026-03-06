@@ -36,3 +36,44 @@ int readInput(PCB processes[])
 
     return count;
 }
+
+//Prints the full PCB trace actively
+void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
+{
+    cout << "Time " << time << ":" << endl;
+
+    cout << "RUNNING:" << endl;
+
+    if(running == nullptr)
+    {
+        cout << "IDLE" << endl;
+    }
+    else
+    {
+        cout << "PID=" << running->pid
+             << " Arr=" << running->arrival
+             << " Burst=" << running->burst
+             << " Rem=" << running->remaining
+             << " Prio=" << running->priority
+             << " State=" << running->state
+             << endl;
+    }
+
+    cout << endl;
+    cout << "READY:" << endl;
+
+    for(int i=0;i<rqSize;i++)
+    {
+        PCB *p = readyQueue[i];
+
+        cout << "PID=" << p->pid
+             << " Arr=" << p->arrival
+             << " Burst=" << p->burst
+             << " Rem=" << p->remaining
+             << " Prio=" << p->priority
+             << " State=" << p->state
+             << endl;
+    }
+
+    cout << endl;
+}
