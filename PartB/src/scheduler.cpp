@@ -77,3 +77,17 @@ void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
 
     cout << endl;
 }
+
+//FCFS Scheduling
+void runFCFS(PCB processes[], int n)
+{
+    PCB* readyQueue[100];
+    int rqSize = 0;
+
+    PCB* running = nullptr;
+
+    int time = 0;
+    int finished = 0;
+
+    while(finished < n)
+    {
