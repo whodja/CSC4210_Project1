@@ -146,3 +146,11 @@ void runSRTF(PCB processes[], int n)
                 readyQueue[rqSize++] = &processes[i];
             }
         }
+
+        //Add running process back to ready queue
+        if(running != nullptr)
+        {
+            readyQueue[rqSize++] = running;
+            running->state = "READY";
+            running = nullptr;
+        }
