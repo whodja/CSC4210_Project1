@@ -15,9 +15,7 @@ using namespace std;
 int readInput(PCB processes[])
 {
     ifstream file("input.txt");
-
     int count = 0;
-
     while(file >> processes[count].pid
                >> processes[count].arrival
                >> processes[count].burst
@@ -28,10 +26,8 @@ int readInput(PCB processes[])
         processes[count].state = "NEW";
         processes[count].start_time = -1;
         processes[count].completion_time = -1;
-
         count++;
     }
-
     file.close();
 
     return count;
@@ -41,7 +37,6 @@ int readInput(PCB processes[])
 void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
 {
     cout << "Time " << time << ":" << endl;
-
     cout << "RUNNING:" << endl;
 
     if(running == nullptr)
@@ -61,7 +56,6 @@ void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
 
     cout << endl;
     cout << "READY:" << endl;
-
     for(int i=0;i<rqSize;i++)
     {
         PCB *p = readyQueue[i];
@@ -74,7 +68,6 @@ void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
              << " State=" << p->state
              << endl;
     }
-
     cout << endl;
 }
 
@@ -83,12 +76,9 @@ void runFCFS(PCB processes[], int n)
 {
     PCB* readyQueue[100];
     int rqSize = 0;
-
     PCB* running = nullptr;
-
     int time = 0;
     int finished = 0;
-
     while(finished < n)
     {
         
@@ -101,3 +91,36 @@ void runFCFS(PCB processes[], int n)
                 readyQueue[rqSize++] = &processes[i];
             }
         }
+        
+        //Select process if CPU idle
+        if(running == nullptr && rqSize > 0)
+        {
+            running = readyQueue[0];
+
+            //shift queue
+            for(int i=1;i<rqSize;i++)
+                readyQueue[i-1] = readyQueue[i];
+            rqSize--;
+            running->state = "RUNNING";
+            if(running->start_time == -1)
+                running->start_time = time;
+        }
+
+        //Print PCB trace
+        printState(time, running, readyQueue, rqSize);
+
+        //Run process
+        if(running != nullptr)
+        {
+            running->remaining--;
+            if(running->remaining == 0)
+            {
+                running->state = "TERMINATED";
+                running->completion_time = time + 1;
+                running = nullptr;
+                finished++;
+            }
+        }
+        time++;
+    }
+}
