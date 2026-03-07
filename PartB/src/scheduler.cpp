@@ -180,7 +180,24 @@ void runSRTF(PCB processes[], int n)
             if(running->start_time == -1)
                 running->start_time = time;
         }
+        //Print PCB trace
+        printState(time, running, readyQueue, rqSize);
 
+        //Run process
+        if(running != nullptr)
+        {
+            running->remaining--;
+            if(running->remaining == 0)
+            {
+                running->state = "TERMINATED";
+                running->completion_time = time + 1;
+                running = nullptr;
+                finished++;
+            }
+        }
+        time++;
+    }
+}
 
 //Priority Scheduling (non-preemptive)
 void runPriority(PCB processes[], int n)
@@ -193,6 +210,25 @@ void runPriority(PCB processes[], int n)
     int finished = 0;
 
 
+        //Print PCB trace
+        printState(time, running, readyQueue, rqSize);
+
+        //Run process
+        if(running != nullptr)
+        {
+            running->remaining--;
+            if(running->remaining == 0)
+            {
+                running->state = "TERMINATED";
+                running->completion_time = time + 1;
+                running = nullptr;
+                finished++;
+            }
+        }
+        time++;
+    }
+}
+
 //Round Robin Scheduling
 void runRR(PCB processes[], int n, int quantum)
 {
@@ -203,3 +239,23 @@ void runRR(PCB processes[], int n, int quantum)
     int time = 0;
     int finished = 0;
     int slice = 0;
+
+
+        //Print PCB trace
+        printState(time, running, readyQueue, rqSize);
+
+        //Run process
+        if(running != nullptr)
+        {
+            running->remaining--;
+            if(running->remaining == 0)
+            {
+                running->state = "TERMINATED";
+                running->completion_time = time + 1;
+                running = nullptr;
+                finished++;
+            }
+        }
+        time++;
+    }
+}
