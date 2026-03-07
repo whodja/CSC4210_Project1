@@ -180,3 +180,26 @@ void runSRTF(PCB processes[], int n)
             if(running->start_time == -1)
                 running->start_time = time;
         }
+
+
+//Priority Scheduling (non-preemptive)
+void runPriority(PCB processes[], int n)
+{
+    PCB* readyQueue[100];
+    int rqSize = 0;
+    PCB* running = nullptr;
+
+    int time = 0;
+    int finished = 0;
+
+
+//Round Robin Scheduling
+void runRR(PCB processes[], int n, int quantum)
+{
+    PCB* readyQueue[100];
+    int rqSize = 0;
+    PCB* running = nullptr;
+
+    int time = 0;
+    int finished = 0;
+    int slice = 0;
