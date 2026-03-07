@@ -166,3 +166,17 @@ void runSRTF(PCB processes[], int n)
                 shortestIndex = i;
             }
         }
+        if(shortestIndex != -1)
+        {
+            running = readyQueue[shortestIndex];
+
+            for(int i=shortestIndex+1;i<rqSize;i++)
+                readyQueue[i-1] = readyQueue[i];
+
+            rqSize--;
+
+            running->state = "RUNNING";
+
+            if(running->start_time == -1)
+                running->start_time = time;
+        }
