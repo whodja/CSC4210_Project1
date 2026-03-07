@@ -147,10 +147,22 @@ void runSRTF(PCB processes[], int n)
             }
         }
 
-        //Add running process back to ready queue
+        //Add running process back to the ready queue
         if(running != nullptr)
         {
             readyQueue[rqSize++] = running;
             running->state = "READY";
             running = nullptr;
+        }
+
+        //Find the shortest remaining time
+        int shortestIndex = -1;
+        for(int i=0;i<rqSize;i++)
+        {
+            if(shortestIndex == -1 ||
+               readyQueue[i]->remaining <
+               readyQueue[shortestIndex]->remaining)
+            {
+                shortestIndex = i;
+            }
         }
