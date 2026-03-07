@@ -124,3 +124,25 @@ void runFCFS(PCB processes[], int n)
         time++;
     }
 }
+
+//SRTF Scheduling
+void runSRTF(PCB processes[], int n)
+{
+    PCB* readyQueue[100];
+    int rqSize = 0;
+    PCB* running = nullptr;
+
+    int time = 0;
+    int finished = 0;
+
+    while(finished < n)
+    {
+        //Admit arriving processes
+        for(int i=0;i<n;i++)
+        {
+            if(processes[i].arrival == time)
+            {
+                processes[i].state = "READY";
+                readyQueue[rqSize++] = &processes[i];
+            }
+        }
