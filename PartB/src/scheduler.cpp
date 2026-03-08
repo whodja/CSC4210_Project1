@@ -209,6 +209,33 @@ void runPriority(PCB processes[], int n)
     int time = 0;
     int finished = 0;
 
+    while(finished < n)
+    {
+        //Admit arrivals
+        for(int i=0;i<n;i++)
+        {
+            if(processes[i].arrival == time)
+            {
+                processes[i].state = "READY";
+                readyQueue[rqSize++] = &processes[i];
+            }
+        }
+
+        //Select the highest priority if CPU is idle
+        if(running == nullptr && rqSize > 0)
+        {
+            int bestIndex = 0;
+
+            for(int i=1;i<rqSize;i++)
+            {
+                if(readyQueue[i]->priority <
+                   readyQueue[bestIndex]->priority)
+                {
+                    bestIndex = i;
+                }
+            }
+
+            running = readyQueue[bestIndex];
 
         //Print PCB trace
         printState(time, running, readyQueue, rqSize);
