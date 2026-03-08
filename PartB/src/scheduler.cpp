@@ -237,6 +237,16 @@ void runPriority(PCB processes[], int n)
 
             running = readyQueue[bestIndex];
 
+            for(int i=best+1;i<rqSize;i++)
+                readyQueue[i-1] = readyQueue[i];
+
+            rqSize--;
+
+            running->state = "RUNNING";
+
+            if(running->start_time == -1)
+                running->start_time = time;
+        }
         //Print PCB trace
         printState(time, running, readyQueue, rqSize);
 
