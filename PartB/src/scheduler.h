@@ -20,4 +20,6 @@ void runSRTF(PCB processes[], int n);
 void runPriority(PCB processes[], int n);
 void runRoundRobin(PCB processes[], int n, int quantum);
 
+void printStats(PCB processes[], int n);
+
 #endif
