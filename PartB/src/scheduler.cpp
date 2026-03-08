@@ -310,16 +310,25 @@ while(finished < n)
         //Print PCB trace
         printState(time, running, readyQueue, rqSize);
 
-        //Run process
         if(running != nullptr)
         {
             running->remaining--;
+            slice++;
+
             if(running->remaining == 0)
             {
                 running->state = "TERMINATED";
-                running->completion_time = time + 1;
+                running->completion_time = time+1;
                 running = nullptr;
                 finished++;
+                slice = 0;
+            }
+            else if(slice == quantum)
+            {
+                running->state = "READY";
+                readyQueue[rqSize++] = running;
+                running = nullptr;
+                slice = 0;
             }
         }
         time++;
