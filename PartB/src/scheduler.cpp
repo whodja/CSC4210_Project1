@@ -277,7 +277,33 @@ void runRR(PCB processes[], int n, int quantum)
     int finished = 0;
     int slice = 0;
 
+while(finished < n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(processes[i].arrival == time)
+            {
+                processes[i].state = "READY";
+                readyQueue[rqSize++] = &processes[i];
+            }
+        }
 
+        if(running == nullptr && rqSize > 0)
+        {
+            running = readyQueue[0];
+
+            for(int i=1;i<rqSize;i++)
+                readyQueue[i-1] = readyQueue[i];
+
+            rqSize--;
+
+            running->state = "RUNNING";
+
+            if(running->start_time == -1)
+                running->start_time = time;
+
+            slice = 0;
+        }
         //Print PCB trace
         printState(time, running, readyQueue, rqSize);
 
