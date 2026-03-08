@@ -160,12 +160,10 @@ void runSRTF(PCB processes[], int n)
         int shortestIndex = -1;
         for(int i=0;i<rqSize;i++)
         {
-            if(shortestIndex == -1 ||
+            if(shortest == -1 ||
                readyQueue[i]->remaining <
-               readyQueue[shortestIndex]->remaining)
-            {
-                shortestIndex = i;
-            }
+               readyQueue[shortest]->remaining)
+                shortest = i;
         }
         if(shortestIndex != -1)
         {
