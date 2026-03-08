@@ -123,6 +123,7 @@ void runFCFS(PCB processes[], int n)
         }
         time++;
     }
+    printStats(processes, n);
 }
 
 //SRTF Scheduling
@@ -197,6 +198,7 @@ void runSRTF(PCB processes[], int n)
         }
         time++;
     }
+    printStats(processes, n);
 }
 
 //Priority Scheduling (non-preemptive)
@@ -264,6 +266,7 @@ void runPriority(PCB processes[], int n)
         }
         time++;
     }
+    printStats(processes, n);
 }
 
 //Round Robin Scheduling
@@ -321,4 +324,5 @@ while(finished < n)
         }
         time++;
     }
+    printStats(processes, n);
 }
