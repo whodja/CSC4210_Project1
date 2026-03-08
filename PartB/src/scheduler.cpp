@@ -71,6 +71,41 @@ void printState(int time, PCB *running, PCB *readyQueue[], int rqSize)
     cout << endl;
 }
 
+//Print scheduling stats
+void printStats(PCB processes[], int n)
+{
+    double totalWaiting = 0;
+    double totalTurnaround = 0;
+    double totalResponse = 0;
+
+    cout << "----- Process Statistics -----" << endl;
+
+    for(int i=0;i<n;i++)
+    {
+        int turnaround = processes[i].completion_time - processes[i].arrival;
+        int waiting = turnaround - processes[i].burst;
+        int response = processes[i].start_time - processes[i].arrival;
+
+        totalWaiting += waiting;
+        totalTurnaround += turnaround;
+        totalResponse += response;
+
+        cout << "PID=" << processes[i].pid
+             << " Waiting=" << waiting
+             << " Turnaround=" << turnaround
+             << " Response=" << response
+             << endl;
+    }
+
+    cout << endl;
+
+    cout << "Average Waiting Time: " << totalWaiting/n << endl;
+    cout << "Average Turnaround Time: " << totalTurnaround/n << endl;
+    cout << "Average Response Time: " << totalResponse/n << endl;
+
+    cout << endl;
+}
+
 //FCFS Scheduling
 void runFCFS(PCB processes[], int n)
 {
