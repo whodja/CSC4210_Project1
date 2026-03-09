@@ -195,10 +195,10 @@ void runSRTF(PCB processes[], int n)
         int shortestIndex = -1;
         for(int i=0;i<rqSize;i++)
         {
-            if(shortest == -1 ||
+            if(shortestIndex == -1 ||
                readyQueue[i]->remaining <
-               readyQueue[shortest]->remaining)
-                shortest = i;
+               readyQueue[shortestIndex]->remaining)
+                shortestIndex = i;
         }
         if(shortestIndex != -1)
         {
@@ -272,7 +272,7 @@ void runPriority(PCB processes[], int n)
 
             running = readyQueue[bestIndex];
 
-            for(int i=best+1;i<rqSize;i++)
+            for(int i=bestIndex+1;i<rqSize;i++)
                 readyQueue[i-1] = readyQueue[i];
 
             rqSize--;
