@@ -7,3 +7,5 @@ Run: ./scheduler
 Input file: input.txt
 
 Algorithms implemented: FCFS, SRTF, Priority, and Round Robin
+
+Repository URL: https://github.com/whodja/CSC4210_Project1/tree/main
