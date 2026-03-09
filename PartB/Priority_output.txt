@@ -1,1 +1,93 @@
+===== PRIORITY =====
+Time 0:
+RUNNING:
+PID=P1 Arr=0 Burst=5 Rem=5 Prio=2 State=RUNNING
 
+READY:
+
+Time 1:
+RUNNING:
+PID=P1 Arr=0 Burst=5 Rem=4 Prio=2 State=RUNNING
+
+READY:
+PID=P2 Arr=1 Burst=3 Rem=3 Prio=1 State=READY
+
+Time 2:
+RUNNING:
+PID=P1 Arr=0 Burst=5 Rem=3 Prio=2 State=RUNNING
+
+READY:
+PID=P2 Arr=1 Burst=3 Rem=3 Prio=1 State=READY
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+
+Time 3:
+RUNNING:
+PID=P1 Arr=0 Burst=5 Rem=2 Prio=2 State=RUNNING
+
+READY:
+PID=P2 Arr=1 Burst=3 Rem=3 Prio=1 State=READY
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=READY
+
+Time 4:
+RUNNING:
+PID=P1 Arr=0 Burst=5 Rem=1 Prio=2 State=RUNNING
+
+READY:
+PID=P2 Arr=1 Burst=3 Rem=3 Prio=1 State=READY
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=READY
+
+Time 5:
+RUNNING:
+PID=P2 Arr=1 Burst=3 Rem=3 Prio=1 State=RUNNING
+
+READY:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=READY
+
+Time 6:
+RUNNING:
+PID=P2 Arr=1 Burst=3 Rem=2 Prio=1 State=RUNNING
+
+READY:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=READY
+
+Time 7:
+RUNNING:
+PID=P2 Arr=1 Burst=3 Rem=1 Prio=1 State=RUNNING
+
+READY:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=READY
+
+Time 8:
+RUNNING:
+PID=P4 Arr=3 Burst=2 Rem=2 Prio=2 State=RUNNING
+
+READY:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+
+Time 9:
+RUNNING:
+PID=P4 Arr=3 Burst=2 Rem=1 Prio=2 State=RUNNING
+
+READY:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=READY
+
+Time 10:
+RUNNING:
+PID=P3 Arr=2 Burst=1 Rem=1 Prio=3 State=RUNNING
+
+READY:
+
+----- Process Statistics -----
+PID=P1 Waiting=0 Turnaround=5 Response=0
+PID=P2 Waiting=4 Turnaround=7 Response=4
+PID=P3 Waiting=8 Turnaround=9 Response=8
+PID=P4 Waiting=5 Turnaround=7 Response=5
+
+Average Waiting Time: 4.25
+Average Turnaround Time: 7
+Average Response Time: 4.25
